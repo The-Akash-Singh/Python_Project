@@ -1,0 +1,42 @@
+{% load staticfiles %}
+
+
+<html>
+    <head>
+        <title>College Information-Desk</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+
+        <div class="page-header">
+            <h1><a href="/">College Information-Desk</a></h1>
+        </div>
+ 
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+ 
+                    {% block content %}
+                    <div class="post">
+                        <h1>{{ post.title }}</h1>
+                        <p>{{ post.text|linebreaksbr }}</p>
+
+                        {% if post.published_date %}
+                        <div class="date">
+                            {{ post.published_date }}
+                        </div>
+                        {% else %}
+                           <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+                        {% endif %}
+
+                                                </div>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
